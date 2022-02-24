@@ -1,8 +1,9 @@
 #include "rotor.h"
 
-Rotor::Rotor(int identifier)
+Rotor::Rotor(int identifier, int advanceNotch)
 {
-  _position = 1;
+  _position = 0;
+  _advanceNotch = advanceNotch;
 }
 
 int Rotor::rightSide(int character)
@@ -21,25 +22,28 @@ void Rotor::increment(void)
   _position %= 26;
 }
 
-void Rotor::increment(int linkedRotor1)
+void Rotor::increment(int RotorFastPosition, int notchRotorFast)
 {
-  if (linkedRotor1 == 0)
+  if (RotorFastPosition == notchRotorFast)
   {
-    _position++;
-    _position %= 26;
+    increment();
   }
 }
 
-void Rotor::increment(int linkedRotor1, int linkedRotor2)
+void Rotor::increment(int RotorFastPosition, int notchRotorFast, int RotorMiddlePosition, int notchRotorMiddle)
 {
-  if (linkedRotor1 == 0 & linkedRotor2 == 0)
+  if (RotorFastPosition == notchRotorFast & RotorMiddlePosition == notchRotorMiddle)
   {
-    _position++;
-    _position %= 26;
+    increment();
   }
 }
 
 int Rotor::getPosition(void)
 {
   return _position;
+}
+
+int Rotor::getAdvanceNotch(void)
+{
+  return _advanceNotch;
 }

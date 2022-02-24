@@ -7,9 +7,9 @@
 Adafruit_RGBLCDShield lcd = Adafruit_RGBLCDShield();
 
 //set the three rotors
-Rotor fast(1);
-Rotor middle(2);
-Rotor slow(3);
+Rotor fast(1, 3);
+Rotor middle(2, 0);
+Rotor slow(3, 0);
 
 //set the reflector
 Reflector reflector(1);
@@ -28,16 +28,17 @@ void setup()
 void loop()
 {
   fast.increment();
-  middle.increment(fast.getPosition());
-  slow.increment(middle.getPosition(), fast.getPosition());
+  middle.increment(fast.getPosition(),fast.getAdvanceNotch());
+  slow.increment(fast.getPosition(),fast.getAdvanceNotch(),middle.getPosition(),middle.getAdvanceNotch());
 
 
   //if (!fast.getPosition() & !middle.getPosition())
   {
-    printRotorPosition();
+    //printRotorPosition();
     LCDprintRotorPosition();
     Serial.println(millis());
   }
+  delay(1000);
 }
 
 void printRotorPosition(void)
@@ -51,11 +52,12 @@ void printRotorPosition(void)
 
 void LCDprintRotorPosition(void)
 {
+  char buffer1[24], buffer2[24];
   //lcd.clear();
+  sprintf(buffer1, "Rotors:%02i-%02i-%02i", slow.getPosition(), middle.getPosition(), fast.getPosition());
+  sprintf(buffer2, "Type  :%02i-%02i-%02i", 3, 2, 1);
   lcd.setCursor(0, 0);
-  lcd.print(slow.getPosition());
-  lcd.print(" - ");
-  lcd.print(middle.getPosition());
-  lcd.print(" - ");
-  lcd.print(fast.getPosition());
+  lcd.print(buffer1);
+  lcd.setCursor(0, 1);
+  lcd.print(buffer2);
 }
