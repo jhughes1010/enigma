@@ -6,7 +6,26 @@ Rotor::Rotor(int identifier, int advanceNotch)
 {
   _position = 0;
   _advanceNotch = advanceNotch + 1;
-  strcpy(_rotorArray, R3);
+  switch(identifier)
+  {
+    case 1:
+    strcpy(_rotorArray, R1);
+    break;
+      case 2:
+    strcpy(_rotorArray, R2);
+    break;
+    case 3:
+    strcpy(_rotorArray, R3);
+    break;
+      case 4:
+    strcpy(_rotorArray, R4);
+    break;
+      case 5:
+    strcpy(_rotorArray, R5);
+    break;
+    default:
+      strcpy(_rotorArray, R1);
+  }
 }
 
 int Rotor::rightSide(int character)
