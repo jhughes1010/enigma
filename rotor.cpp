@@ -3,7 +3,7 @@
 Rotor::Rotor(int identifier, int advanceNotch)
 {
   _position = 0;
-  _advanceNotch = advanceNotch;
+  _advanceNotch = advanceNotch + 1;
 }
 
 int Rotor::rightSide(int character)
@@ -40,7 +40,7 @@ void Rotor::increment(int RotorFastPosition, int notchRotorFast, int RotorMiddle
 
 int Rotor::getPosition(void)
 {
-  return _position;
+  return _position + 1;
 }
 
 int Rotor::getAdvanceNotch(void)
