@@ -1,28 +1,29 @@
 #include "rotor.h"
 #include "rotorDef.h"
 #include <string.h>
+#include <Arduino,h>
 
 Rotor::Rotor(int identifier, int advanceNotch)
 {
   _position = 0;
   _advanceNotch = advanceNotch + 1;
-  switch(identifier)
+  switch (identifier)
   {
     case 1:
-    strcpy(_rotorArray, R1);
-    break;
-      case 2:
-    strcpy(_rotorArray, R2);
-    break;
+      strcpy(_rotorArray, R1);
+      break;
+    case 2:
+      strcpy(_rotorArray, R2);
+      break;
     case 3:
-    strcpy(_rotorArray, R3);
-    break;
-      case 4:
-    strcpy(_rotorArray, R4);
-    break;
-      case 5:
-    strcpy(_rotorArray, R5);
-    break;
+      strcpy(_rotorArray, R3);
+      break;
+    case 4:
+      strcpy(_rotorArray, R4);
+      break;
+    case 5:
+      strcpy(_rotorArray, R5);
+      break;
     default:
       strcpy(_rotorArray, R1);
   }
@@ -85,5 +86,8 @@ char Rotor::rl(char letter)
   position = letter - 65;
   position = (position + _position) % 26;
   letter = _rotorArray[position];
+
+  Serial.print("Rotor Out:");
+  Serial.println(letter);
   return letter;
 }

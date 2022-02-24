@@ -31,11 +31,12 @@ void loop()
   char buffer[32];
   int p = 0;
   char letter, cipher;
-  strcpy(buffer, "enigmaaaaaaaa");
+  strcpy(buffer, "aaa");
 
   while (strlen(buffer) > p)
   {
     letter = buffer[p];
+    Serial.println("\n\n");
     Serial.println(letter);
     incrementRotors();
     printRotorPosition();
@@ -87,5 +88,7 @@ char substitution(char letter)
   letter = toupper(letter);
   Serial.println(letter, DEC);
   cipher = fast.rl(letter);
+  cipher = middle.rl(cipher);
+  cipher = slow.rl(cipher);
   return cipher;
 }
