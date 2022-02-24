@@ -1,5 +1,6 @@
 #include "rotor.h"
 #include "reflector.h"
+//#include "rotorDef.h"
 #include <Adafruit_RGBLCDShield.h>
 #include <Adafruit_MCP23X17.h>
 
@@ -16,7 +17,7 @@ Reflector reflector(1);
 
 void setup()
 {
-  Serial.begin(9600);
+  Serial.begin(115200);
   Serial.println("\n\n\nThe Enigma machine\n");
 
   lcd.begin(16, 2);
@@ -27,22 +28,32 @@ void setup()
 
 void loop()
 {
-  fast.increment();
-  middle.increment(fast.getPosition(),fast.getAdvanceNotch());
-  slow.increment(fast.getPosition(),fast.getAdvanceNotch(),middle.getPosition(),middle.getAdvanceNotch());
+  char buffer[32];
+  int p = 0;
+  char letter, cipher;
+  strcpy(buffer, "enigmaaaaaaaa");
 
-
-  //if (!fast.getPosition() & !middle.getPosition())
+  while (strlen(buffer) > p)
   {
+    letter = buffer[p];
+    Serial.println(letter);
+    incrementRotors();
     printRotorPosition();
     LCDprintRotorPosition();
-    Serial.println(millis());
+    cipher = substitution(letter);
+    Serial.println(cipher);
+    p++;
   }
-  //delay(2000);
+
+  while (1)
+  {
+
+  }
 }
 
 void printRotorPosition(void)
 {
+  Serial.print("Rotors: ");
   Serial.print(slow.getPosition());
   Serial.print(" - ");
   Serial.print(middle.getPosition());
@@ -60,4 +71,21 @@ void LCDprintRotorPosition(void)
   lcd.print(buffer1);
   lcd.setCursor(0, 1);
   lcd.print(buffer2);
+}
+
+void incrementRotors()
+{
+  fast.increment();
+  middle.increment(fast.getPosition(), fast.getAdvanceNotch());
+  slow.increment(fast.getPosition(), fast.getAdvanceNotch(), middle.getPosition(), middle.getAdvanceNotch());
+}
+
+
+char substitution(char letter)
+{
+  char cipher;
+  letter = toupper(letter);
+  Serial.println(letter, DEC);
+  cipher = fast.rl(letter);
+  return cipher;
 }

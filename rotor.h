@@ -1,6 +1,8 @@
 class Rotor
 {
   public:
+
+
     Rotor(int identifier, int advanceNotch);
     void increment(void);
     void increment(int RotorFastPosition, int notchRotorFast);
@@ -9,6 +11,9 @@ class Rotor
     int leftSide(int character);
     int getPosition(void);
     int getAdvanceNotch(void);
+    void setPosition(int position);
+
+    char rl( char letter);
 
 
 
@@ -16,5 +21,6 @@ class Rotor
     int _position;
     //int _rolloverNotch;
     int _advanceNotch;
+    char _rotorArray[32];
 
 };
