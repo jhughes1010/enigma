@@ -38,14 +38,14 @@ void loop()
   char buffer[32];
   int p = 0;
   char letter, cipher;
-  strcpy(buffer, "abcd");
-  //strcpy(buffer, "dbsq");
+  strcpy(buffer, "a");
+  strcpy(buffer, "w");
   while (strlen(buffer) > p)
   {
     letter = buffer[p];
     Serial.println("");
     Serial.println(letter);
-    incrementRotors();
+    //incrementRotors();
     printRotorPosition();
     LCDprintRotorPosition();
     cipher = substitution(letter);
@@ -94,13 +94,13 @@ char substitution(char letter)
 {
   char cipher;
   letter = toupper(letter);
-  Serial.println(letter, DEC);
+  //Serial.println(letter, DEC);
   cipher = fast.rl(letter);
-  cipher = middle.rl(cipher);
-  cipher = slow.rl(cipher);
+  //cipher = middle.rl(cipher);
+  //cipher = slow.rl(cipher);
   cipher = reflector.reflect(cipher);
-  cipher = slow.lr(cipher);
-  cipher = middle.lr(cipher);
+  //cipher = slow.lr(cipher);
+  //cipher = middle.lr(cipher);
   cipher = fast.lr(cipher);
   return cipher;
 }

@@ -104,20 +104,27 @@ char Rotor::rl(char letter)
 char Rotor::lr(char letter)
 {
   int position = 0;
-  int index;
-
+  int index = 0;
   Serial.print("Rotor In:");
   Serial.print(letter);
 
+  position = letter - 65;
+  Serial.println(position);
+  position = (position + _position) % 26;
+  Serial.println(position);
+  /*
   for (index = 0; index < 26; index++)
   {
-    if (letter == _rotorArray[(index + _position) % 26])
+    if (_rotorArray[index] == letter)
     {
-      position = (index + _position) % 26;
-      break;
+      letter = index + 65;
+      //Serial.println(index);
     }
   }
-  letter = position + 65;
+  */
+  letter = _rotorArray[position];
+  //Serial.println(position);
+  //letter = _rotorArray[position];
   Serial.print(" - Rotor Out:");
   Serial.println(letter);
   return letter;
