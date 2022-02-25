@@ -11,21 +11,27 @@ Rotor::Rotor(int identifier, int advanceNotch)
   {
     case 1:
       strcpy(_rotorArray, ROTOR1);
+      strcpy(_rotorArray, ROTOR1_PT);
       break;
     case 2:
       strcpy(_rotorArray, ROTOR2);
+      strcpy(_rotorArray, ROTOR1_PT);
       break;
     case 3:
       strcpy(_rotorArray, ROTOR3);
+      strcpy(_rotorArray, ROTOR1_PT);
       break;
     case 4:
       strcpy(_rotorArray, ROTOR4);
+      strcpy(_rotorArray, ROTOR1_PT);
       break;
     case 5:
       strcpy(_rotorArray, ROTOR5);
+      strcpy(_rotorArray, ROTOR1_PT);
       break;
     default:
       strcpy(_rotorArray, ROTOR1);
+      strcpy(_rotorArray, ROTOR1_PT);
   }
 }
 
@@ -85,6 +91,7 @@ char Rotor::rl(char letter)
   int position;
   position = letter - 65;
   position = (position + _position) % 26;
+  Serial.println(position);
   letter = _rotorArray[position];
 
   Serial.print("Rotor Out:");
@@ -100,12 +107,13 @@ char Rotor::lr(char letter)
 
   for (index = 0; index < 26; index++)
   {
-    if (letter == _rotorArray[index])
+    if (letter == _rotorArray[(index + _position) % 26])
     {
-      position = index;
+      position = index + _position;
       break;
     }
   }
+  Serial.println(position);
   letter = position + 65;
   Serial.print("Rotor Out:");
   Serial.println(letter);
