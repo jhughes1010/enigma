@@ -14,6 +14,7 @@ class Rotor
     void setPosition(int position);
 
     char rl( char letter);
+    char lr(char letter);
 
 
 

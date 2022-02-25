@@ -12,8 +12,9 @@ Rotor fast(3, 22);
 Rotor middle(2, 5);
 Rotor slow(1, 17);
 
+
 //set the reflector
-Reflector reflector(1);
+Reflector reflector(2);
 
 void setup()
 {
@@ -22,6 +23,12 @@ void setup()
 
   lcd.begin(16, 2);
   lcd.setBacklight(0x01);
+  lcd.clear();
+  lcd.setCursor(0, 0);
+  lcd.print("Enigma Machine");
+  lcd.setCursor(0, 1);
+  lcd.print("2022");
+  delay(2000);
 
 
 }
@@ -32,11 +39,11 @@ void loop()
   int p = 0;
   char letter, cipher;
   strcpy(buffer, "aaa");
-
+  //strcpy(buffer, "qkt");
   while (strlen(buffer) > p)
   {
     letter = buffer[p];
-    Serial.println("\n\n");
+    Serial.println("");
     Serial.println(letter);
     incrementRotors();
     printRotorPosition();
@@ -44,6 +51,7 @@ void loop()
     cipher = substitution(letter);
     Serial.println(cipher);
     p++;
+    delay(250);
   }
 
   while (1)
@@ -90,5 +98,9 @@ char substitution(char letter)
   cipher = fast.rl(letter);
   cipher = middle.rl(cipher);
   cipher = slow.rl(cipher);
+  cipher = reflector.reflect(cipher);
+  cipher = slow.lr(cipher);
+  cipher = middle.lr(cipher);
+  cipher = fast.lr(cipher);
   return cipher;
 }
