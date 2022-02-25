@@ -25,11 +25,13 @@ Reflector::Reflector(int identifier)
 char Reflector::reflect(char letter)
 {
   int position;
+  Serial.print("Reflector In:");
+  Serial.print(letter);
   position = letter - 65;
   //position = % 26;
   letter = _reflectorArray[position];
 
-  Serial.print("Reflector Out:");
+  Serial.print(" - Reflector Out:");
   Serial.println(letter);
   return letter;
 }

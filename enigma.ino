@@ -38,8 +38,8 @@ void loop()
   char buffer[32];
   int p = 0;
   char letter, cipher;
-  strcpy(buffer, "aaaaa");
-  //strcpy(buffer, "d");
+  strcpy(buffer, "abcd");
+  //strcpy(buffer, "dbsq");
   while (strlen(buffer) > p)
   {
     letter = buffer[p];
