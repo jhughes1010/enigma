@@ -11,11 +11,11 @@ Rotor::Rotor(int identifier, int advanceNotch)
   {
     case 1:
       strcpy(_rotorArray, ROTOR1);
-      strcpy(_rotorArray, ROTOR1_PT);
+      //strcpy(_rotorArray, ROTOR1_PT);
       break;
     case 2:
       strcpy(_rotorArray, ROTOR2);
-      strcpy(_rotorArray, ROTOR1_PT);
+      //strcpy(_rotorArray, ROTOR1_PT);
       break;
     case 3:
       strcpy(_rotorArray, ROTOR3);
@@ -23,15 +23,15 @@ Rotor::Rotor(int identifier, int advanceNotch)
       break;
     case 4:
       strcpy(_rotorArray, ROTOR4);
-      strcpy(_rotorArray, ROTOR1_PT);
+      //strcpy(_rotorArray, ROTOR1_PT);
       break;
     case 5:
       strcpy(_rotorArray, ROTOR5);
-      strcpy(_rotorArray, ROTOR1_PT);
+      //strcpy(_rotorArray, ROTOR1_PT);
       break;
     default:
       strcpy(_rotorArray, ROTOR1);
-      strcpy(_rotorArray, ROTOR1_PT);
+      //strcpy(_rotorArray, ROTOR1_PT);
   }
 }
 
@@ -89,15 +89,15 @@ int Rotor::getAdvanceNotch(void)
 char Rotor::rl(char letter)
 {
   int position;
-  Serial.print("Rotor In:");
-  Serial.print(letter);
+  //Serial.print("Rotor In:");
+  //Serial.print(letter);
   position = letter - 65;
   position = (position + _position) % 26;
   //Serial.println(position);
   letter = _rotorArray[position];
 
-  Serial.print(" - Rotor Out:");
-  Serial.println(letter);
+  //Serial.print(" - Rotor Out:");
+  //Serial.println(letter);
   return letter;
 }
 
@@ -105,27 +105,22 @@ char Rotor::lr(char letter)
 {
   int position = 0;
   int index = 0;
-  Serial.print("Rotor In:");
-  Serial.print(letter);
+  //Serial.print("Rotor In:");
+  //Serial.print(letter);
 
-  position = letter - 65;
-  Serial.println(position);
-  position = (position + _position) % 26;
-  Serial.println(position);
-  /*
   for (index = 0; index < 26; index++)
   {
     if (_rotorArray[index] == letter)
     {
-      letter = index + 65;
-      //Serial.println(index);
+
+      position = (index - _position + 26) % 26;
+      //Serial.println(_position);
+      //Serial.println(position);
     }
   }
-  */
-  letter = _rotorArray[position];
-  //Serial.println(position);
-  //letter = _rotorArray[position];
-  Serial.print(" - Rotor Out:");
-  Serial.println(letter);
+
+  letter = position + 65;
+  //Serial.print(" - Rotor Out:");
+  //Serial.println(letter);
   return letter;
 }
