@@ -74,12 +74,12 @@ void runEnigma(char letter)
 {
   char cipher;
   incrementRotors();
-  printRotorPosition();
-  Serial.println("");
-  Serial.println(letter);
-  LCDprintRotorPosition();
+  //printRotorPosition();
+  //Serial.println("");
+  //Serial.println(letter);
+  //LCDprintRotorPosition();
   cipher = substitution(letter);
-  Serial.println(cipher);
+  Serial.print(cipher);
 }
 
 /**

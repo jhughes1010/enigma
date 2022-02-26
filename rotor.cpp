@@ -57,6 +57,12 @@ void Rotor::increment(int RotorFastPosition, int notchRotorFast, int RotorMiddle
   }
 }
 
+/*
+  void Rotor::setPosition(int position)
+  {
+  _position = position;
+  }*/
+
 int Rotor::getPosition(void)
 {
   return _position + 1;
@@ -64,9 +70,9 @@ int Rotor::getPosition(void)
 
 void Rotor::setPosition(int position)
 {
-  if (position >= 1 & position <= 26)
+  if (position >= 1 | position <= 26)
   {
-    _position -= 1;
+    _position = position - 1;
   }
 }
 
