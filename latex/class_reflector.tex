@@ -1,0 +1,75 @@
+\hypertarget{class_reflector}{}\doxysection{Reflector Class Reference}
+\label{class_reflector}\index{Reflector@{Reflector}}
+
+
+{\ttfamily \#include $<$reflector.\+h$>$}
+
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{class_reflector_ac230731103a57451b2e431db61658386}{Reflector}} (int identifier)
+\begin{DoxyCompactList}\small\item\em \mbox{\hyperlink{class_reflector}{Reflector}} enstaniation. Initialized the reflector based on identifier passed. \end{DoxyCompactList}\item 
+char \mbox{\hyperlink{class_reflector_afceea64c0ac2da6b9976a86a8cb53a30}{reflect}} (char letter)
+\begin{DoxyCompactList}\small\item\em Takes input character and translates it to the reflected output character. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Private Attributes}
+\begin{DoxyCompactItemize}
+\item 
+char \mbox{\hyperlink{class_reflector_a05b88304a7c4232ee16961030c245f07}{\+\_\+reflector\+Array}} \mbox{[}32\mbox{]}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Constructor \& Destructor Documentation}
+\mbox{\Hypertarget{class_reflector_ac230731103a57451b2e431db61658386}\label{class_reflector_ac230731103a57451b2e431db61658386}} 
+\index{Reflector@{Reflector}!Reflector@{Reflector}}
+\index{Reflector@{Reflector}!Reflector@{Reflector}}
+\doxysubsubsection{\texorpdfstring{Reflector()}{Reflector()}}
+{\footnotesize\ttfamily Reflector\+::\+Reflector (\begin{DoxyParamCaption}\item[{int}]{identifier }\end{DoxyParamCaption})}
+
+
+
+\mbox{\hyperlink{class_reflector}{Reflector}} enstaniation. Initialized the reflector based on identifier passed. 
+
+There are 3 supported identifiers. 
+\begin{DoxyParams}{Parameters}
+{\em identifier} & 3 reflector models are supported. These are accessed via identifier values 1-\/3\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+True if the event read was successful, otherwise false. 
+\end{DoxyReturn}
+
+
+\doxysubsection{Member Function Documentation}
+\mbox{\Hypertarget{class_reflector_afceea64c0ac2da6b9976a86a8cb53a30}\label{class_reflector_afceea64c0ac2da6b9976a86a8cb53a30}} 
+\index{Reflector@{Reflector}!reflect@{reflect}}
+\index{reflect@{reflect}!Reflector@{Reflector}}
+\doxysubsubsection{\texorpdfstring{reflect()}{reflect()}}
+{\footnotesize\ttfamily char Reflector\+::reflect (\begin{DoxyParamCaption}\item[{char}]{letter }\end{DoxyParamCaption})}
+
+
+
+Takes input character and translates it to the reflected output character. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em letter} & ASCII character input you wish to be run through the assigned reflector. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+reflected ASCII character 
+\end{DoxyReturn}
+
+
+\doxysubsection{Member Data Documentation}
+\mbox{\Hypertarget{class_reflector_a05b88304a7c4232ee16961030c245f07}\label{class_reflector_a05b88304a7c4232ee16961030c245f07}} 
+\index{Reflector@{Reflector}!\_reflectorArray@{\_reflectorArray}}
+\index{\_reflectorArray@{\_reflectorArray}!Reflector@{Reflector}}
+\doxysubsubsection{\texorpdfstring{\_reflectorArray}{\_reflectorArray}}
+{\footnotesize\ttfamily char Reflector\+::\+\_\+reflector\+Array\mbox{[}32\mbox{]}\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{reflector_8h}{reflector.\+h}}\item 
+\mbox{\hyperlink{reflector_8cpp}{reflector.\+cpp}}\end{DoxyCompactItemize}

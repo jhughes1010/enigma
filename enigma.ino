@@ -1,6 +1,35 @@
+/**
+ * @file enigma.ino
+ *
+ * @mainpage The Enigma Machine
+ *
+ * @section description Description
+ * A modern day instance of an Enigma machine
+ * 
+ *
+ * @section circuit Circuit
+ * - See github for PCB designs
+ * - 
+ *
+ * @section libraries Libraries
+ * - Adafruit_RGBLCDShield.h
+ *   - Supports I2C based LCD communication
+ *
+ * @section notes Notes
+ * - Comments are Doxygen compatible.
+ *
+ * @section todo TODO
+ * - Many non-class related functions need documentation
+ *
+ * @section author Author
+ * - Created by James Hughes on 02/21/2022.
+ * - Modified by James Hughes on 02/26/2022.
+ *
+ * Copyright (c) 2022 James Hughes.  All rights reserved.
+ */
+ 
 #include "rotor.h"
 #include "reflector.h"
-//#include "rotorDef.h"
 #include <Adafruit_RGBLCDShield.h>
 #include <Adafruit_MCP23X17.h>
 
@@ -12,24 +41,15 @@ Rotor fast(3, 22);
 Rotor middle(2, 5);
 Rotor slow(1, 17);
 
-
 //set the reflector
 Reflector reflector(2);
 
 void setup()
 {
   Serial.begin(115200);
-  Serial.println("\n\n\nThe Enigma machine\n");
-
+  Serial.println("\nThe Enigma machine\n");
   lcd.begin(16, 2);
-  lcd.setBacklight(0x01);
-  lcd.clear();
-  lcd.setCursor(0, 0);
-  lcd.print("Enigma Machine");
-  lcd.setCursor(0, 1);
-  lcd.print("2022");
-  delay(2000);
-
+  LCDTitle();
 
 }
 
@@ -37,70 +57,20 @@ void loop()
 {
   char buffer[32];
   int p = 0;
-  char letter, cipher;
+  char letter;
   strcpy(buffer, "samantha");
-  strcpy(buffer, "ehdxgbwo");
+  //strcpy(buffer, "ehdxgbwo");
   while (strlen(buffer) > p)
   {
     letter = buffer[p];
-    incrementRotors();
-    printRotorPosition();
-    Serial.println("");
-    Serial.println(letter);
-    LCDprintRotorPosition();
-    cipher = substitution(letter);
-    Serial.println(cipher);
+    runEnigma( letter);
     p++;
-    delay(250);
   }
 
-  while (1)
-  {
-
-  }
-}
-
-void printRotorPosition(void)
-{
-  Serial.print("Rotors: ");
-  Serial.print(slow.getPosition());
-  Serial.print(" - ");
-  Serial.print(middle.getPosition());
-  Serial.print(" - ");
-  Serial.println(fast.getPosition());
-}
-
-void LCDprintRotorPosition(void)
-{
-  char buffer1[24], buffer2[24];
-  //lcd.clear();
-  sprintf(buffer1, "Rotors:%02i-%02i-%02i", slow.getPosition(), middle.getPosition(), fast.getPosition());
-  sprintf(buffer2, "Type  :%02i-%02i-%02i", 1, 2, 3);
-  lcd.setCursor(0, 0);
-  lcd.print(buffer1);
-  lcd.setCursor(0, 1);
-  lcd.print(buffer2);
-}
-
-void incrementRotors()
-{
-  fast.increment();
-  middle.increment(fast.getPosition(), fast.getAdvanceNotch());
-  slow.increment(fast.getPosition(), fast.getAdvanceNotch(), middle.getPosition(), middle.getAdvanceNotch());
-}
-
-
-char substitution(char letter)
-{
-  char cipher;
-  letter = toupper(letter);
-  //Serial.println(letter, DEC);
-  cipher = fast.rl(letter);
-  cipher = middle.rl(cipher);
-  cipher = slow.rl(cipher);
-  cipher = reflector.reflect(cipher);
-  cipher = slow.lr(cipher);
-  cipher = middle.lr(cipher);
-  cipher = fast.lr(cipher);
-  return cipher;
+  //scan menu/utility buttons
+  //scan keyboard
+  //if buffer -> cipher
+  //  lampboard update 
+  //refresh 7-segments
+  //refresh LCD
 }

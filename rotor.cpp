@@ -35,16 +35,6 @@ Rotor::Rotor(int identifier, int advanceNotch)
   }
 }
 
-int Rotor::rightSide(int character)
-{
-
-}
-
-int Rotor::leftSide(int character)
-{
-
-}
-
 void Rotor::increment(void)
 {
   _position++;
@@ -74,9 +64,9 @@ int Rotor::getPosition(void)
 
 void Rotor::setPosition(int position)
 {
-  if (position <= 1 & position >= 26)
+  if (position >= 1 & position <= 26)
   {
-    _position = position - 1;
+    _position -= 1;
   }
 }
 
@@ -86,7 +76,7 @@ int Rotor::getAdvanceNotch(void)
 }
 
 
-char Rotor::rl(char letter)
+char Rotor::rightLeft(char letter)
 {
   int position;
   //Serial.print("Rotor In:");
@@ -101,7 +91,7 @@ char Rotor::rl(char letter)
   return letter;
 }
 
-char Rotor::lr(char letter)
+char Rotor::leftRight(char letter)
 {
   int position = 0;
   int index = 0;

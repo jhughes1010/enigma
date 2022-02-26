@@ -7,14 +7,13 @@ class Rotor
     void increment(void);
     void increment(int RotorFastPosition, int notchRotorFast);
     void increment(int RotorFastPosition, int notchRotorFast, int RotorMiddlePosition, int notchRotorMiddle);
-    int rightSide(int character);
-    int leftSide(int character);
+    
+    void setPosition(int position);
     int getPosition(void);
     int getAdvanceNotch(void);
-    void setPosition(int position);
 
-    char rl( char letter);
-    char lr(char letter);
+    char rightLeft( char letter);
+    char leftRight(char letter);
 
 
 
