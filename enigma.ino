@@ -44,6 +44,9 @@ Rotor slow(1, 17);
 //set the reflector
 Reflector reflector(2);
 
+/**
+ * The standard Arduino setup function used for setup and configuration tasks.
+ */
 void setup()
 {
   Serial.begin(115200);
@@ -53,6 +56,9 @@ void setup()
 
 }
 
+/**
+ * The standard Arduino loop function used for repeating tasks.
+ */
 void loop()
 {
   char buffer[32];

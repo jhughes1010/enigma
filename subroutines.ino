@@ -2,6 +2,10 @@
 //-------------------------
 //Subroutines
 //-------------------------
+
+/**
+ * The standard Arduino loop function used for repeating tasks.
+ */
 void printRotorPosition(void)
 {
   Serial.print("Rotors: ");
@@ -12,6 +16,9 @@ void printRotorPosition(void)
   Serial.println(fast.getPosition());
 }
 
+/**
+ * The standard Arduino loop function used for repeating tasks.
+ */
 void LCDprintRotorPosition(void)
 {
   char buffer1[24], buffer2[24];
@@ -24,6 +31,9 @@ void LCDprintRotorPosition(void)
   lcd.print(buffer2);
 }
 
+/**
+ * The standard Arduino loop function used for repeating tasks.
+ */
 void incrementRotors()
 {
   fast.increment();
@@ -31,6 +41,13 @@ void incrementRotors()
   slow.increment(fast.getPosition(), fast.getAdvanceNotch(), middle.getPosition(), middle.getAdvanceNotch());
 }
 
+/**
+ * This function taskes the passed ASCII character:
+ *  - converts to uppercase ASCII
+ *  - runs character through 3 defined rotors
+ *  - runs character through the reflector
+ *  - runs character back through 3 defined rotors
+ */
 char substitution(char letter)
 {
   char cipher;
@@ -47,6 +64,12 @@ char substitution(char letter)
   return cipher;
 }
 
+/**
+ * Top level cipher engine call. This will:
+ * - Increment rotors
+ * - Display rotor values to LCD
+ * - Run the substitution() to encrypt/decrypt the passed character
+ */
 void runEnigma(char letter)
 {
   char cipher;
@@ -59,6 +82,9 @@ void runEnigma(char letter)
   Serial.println(cipher);
 }
 
+/**
+ * Project title to LCD for 2sec
+ */
 void LCDTitle(void)
 {
   lcd.setBacklight(0x01);

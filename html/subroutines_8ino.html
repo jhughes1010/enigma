@@ -98,6 +98,7 @@ Functions</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
+<p >The standard Arduino loop function used for repeating tasks. </p>
 
 </div>
 </div>
@@ -116,6 +117,7 @@ Functions</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
+<p >The standard Arduino loop function used for repeating tasks. </p>
 
 </div>
 </div>
@@ -134,6 +136,7 @@ Functions</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
+<p >Project title to LCD for 2sec </p>
 
 </div>
 </div>
@@ -152,6 +155,7 @@ Functions</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
+<p >The standard Arduino loop function used for repeating tasks. </p>
 
 </div>
 </div>
@@ -170,6 +174,11 @@ Functions</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
+<p >Top level cipher engine call. This will:</p><ul>
+<li>Increment rotors</li>
+<li>Display rotor values to LCD</li>
+<li>Run the <a class="el" href="subroutines_8ino.html#a3924857a86d364871c4386ed3d11e121">substitution()</a> to encrypt/decrypt the passed character </li>
+</ul>
 
 </div>
 </div>
@@ -188,6 +197,12 @@ Functions</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
+<p >This function taskes the passed ASCII character:</p><ul>
+<li>converts to uppercase ASCII</li>
+<li>runs character through 3 defined rotors</li>
+<li>runs character through the reflector</li>
+<li>runs character back through 3 defined rotors </li>
+</ul>
 
 </div>
 </div>
